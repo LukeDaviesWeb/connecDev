@@ -3,42 +3,36 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 
-//bring in routes
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
 
-//init express in a variable
 const app = express();
 
-//body parser middleware
+// Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//DB Config
+// DB Config
 const db = require('./config/keys').mongoURI;
 
-//Connect to MONGODB through mongoose
+// Connect to MongoDB
 mongoose
   .connect(db, { useNewUrlParser: true })
-  .then(() => console.log('mongo db connected'))
+  .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
 
-//Passport middleware\
+// Passport middleware
 app.use(passport.initialize());
 
-//Passport config
+// Passport Config
 require('./config/passport')(passport);
 
-//use routes
+// Use Routes
 app.use('/api/users', users);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);
 
-//sets a port for node to use
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5002;
 
-//listen takes two variables, the port and a callback func
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
+app.listen(port, () => console.log(`Server running on port ${port}`));
