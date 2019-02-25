@@ -3,7 +3,7 @@ const isEmpty = require('./is-empty');
 
 module.exports = function validatePostInput(data) {
   let errors = {};
-  //required field chnage to string if empty
+
   data.text = !isEmpty(data.text) ? data.text : '';
 
   if (!Validator.isLength(data.text, { min: 10, max: 300 })) {
