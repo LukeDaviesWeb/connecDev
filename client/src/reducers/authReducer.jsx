@@ -1,3 +1,5 @@
+import { GET_ERRORS } from '../actions/types';
+
 const initialState = {
   isAuthenticated: false,
   user: {}
