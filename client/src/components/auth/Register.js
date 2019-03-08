@@ -64,7 +64,7 @@ class Register extends Component {
               <form noValidate onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   placeholder="Name"
-                  name="Name"
+                  name="name"
                   value={this.state.name}
                   onChange={this.onChange}
                   error={errors.name}
